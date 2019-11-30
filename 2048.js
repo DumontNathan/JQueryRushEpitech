@@ -20,13 +20,6 @@ refreshGrid();
 
 window.onkeydown = function (e) {
    
-    if(checkLoose() && countEmptyCells() == 0)
-    {
-        alert('No more move available... You lost.');
-        restartGame();
-    }
-    else
-    {
         var tempGrid = duplicate(grid);
         if (e.keyCode == '38') {
             moveUp();
@@ -41,15 +34,20 @@ window.onkeydown = function (e) {
             moveRight();
         }
     
-        if(!arrayIsEqual(tempGrid, grid))
+        if(checkLoose() && countEmptyCells() == 0)
         {
-            setNumber();
+            alert('No more move available... You lost.');
+            restartGame();
         }
-            
-        refreshGrid();
-        checkWin();
-    }
-
+        else
+        {
+            if(!arrayIsEqual(tempGrid, grid))
+            {
+                setNumber();
+            } 
+                refreshGrid();
+                checkWin();
+        }
   }
   
 
