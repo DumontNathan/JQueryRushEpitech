@@ -35,28 +35,28 @@ function checkLoose()
 {
     var tempGrid = duplicate(grid);
 
-    moveDown();
+    moveDown(true);
     if(!arrayIsEqual(tempGrid, grid))
     {
         grid = duplicate(tempGrid);
         return false;
     }
     grid = duplicate(tempGrid);
-    moveLeft();
+    moveLeft(true);
     if(!arrayIsEqual(tempGrid, grid))
     {
         grid = duplicate(tempGrid);
         return false;
     }
     grid = duplicate(tempGrid);
-    moveUp();
+    moveUp(true);
     if(!arrayIsEqual(tempGrid, grid))
     {
         grid = duplicate(tempGrid);
         return false;
     }
     grid = duplicate(tempGrid);
-    moveRight();
+    moveRight(true);
     if(!arrayIsEqual(tempGrid, grid))
     {
         grid = duplicate(tempGrid);
@@ -159,7 +159,7 @@ function setNumber()
 
 // MOVES
 
-function moveRight()
+function moveRight(isCheckLoose)
 {
     for (var i = 0; i < 4; i++) 
     {
@@ -175,13 +175,13 @@ function moveRight()
         }
         for (var k = 4; k > filled; k--) 
             tempGrid.unshift('');        
-        var finalGrid = addNumbersRight(tempGrid);      
+        var finalGrid = addNumbersRight(tempGrid, isCheckLoose);      
         for (var j = 0; j < 4; j++)
             grid[i][j] = finalGrid[j];      
     }   
 }
 
-function moveLeft()
+function moveLeft(isCheckLoose)
 {
     for (var i = 0; i < 4; i++) 
     {
@@ -197,13 +197,13 @@ function moveLeft()
         }
         for (var k = 4; k > filled; k--) 
             tempGrid.push('');
-        var finalGrid = addNumbersLeft(tempGrid); 
+        var finalGrid = addNumbersLeft(tempGrid, isCheckLoose); 
         for (var j = 0; j < 4; j++)
             grid[i][j] = finalGrid[j];      
     }   
 }
 
-function moveUp()
+function moveUp(isCheckLoose)
 {
     for (var i = 0; i < 4; i++) 
     {
@@ -219,13 +219,13 @@ function moveUp()
         }
         for (var k = 4; k > filled; k--) 
             tempGrid.push('');
-        var finalGrid = addNumbersLeft(tempGrid);    
+        var finalGrid = addNumbersLeft(tempGrid, isCheckLoose);    
         for (var j = 0; j < 4; j++)
             grid[j][i] = finalGrid[j];      
     }   
 }
 
-function moveDown()
+function moveDown(isCheckLoose)
 {
     for (var i = 0; i < 4; i++) 
     {
@@ -241,7 +241,7 @@ function moveDown()
         }
         for (var k = 4; k > filled; k--) 
             tempGrid.unshift('');
-        var finalGrid = addNumbersRight(tempGrid);
+        var finalGrid = addNumbersRight(tempGrid, isCheckLoose);
         for (var j = 0; j < 4; j++)
             grid[j][i] = finalGrid[j];      
     }   
@@ -249,7 +249,7 @@ function moveDown()
 
 // ADD NUMBERS
 
-function addNumbersRight(tempGrid)       //WORKS FOR RIGHT AND DOWN
+function addNumbersRight(tempGrid, isCheckLoose)       //WORKS FOR RIGHT AND DOWN
 {
     var finalGrid = [];
     var empty = 0;
@@ -261,8 +261,11 @@ function addNumbersRight(tempGrid)       //WORKS FOR RIGHT AND DOWN
             {
                 finalGrid.unshift(String(tempGrid[i]*2));
                 tempGrid[i-1] = '';
-                score += tempGrid[i]*2;
-                displayScore();
+                if(!isCheckLoose)
+                {
+                    score += tempGrid[i]*2;
+                    displayScore();
+                }
             }
             else
             finalGrid.unshift(tempGrid[i]);
@@ -275,7 +278,7 @@ function addNumbersRight(tempGrid)       //WORKS FOR RIGHT AND DOWN
     return finalGrid;
 }
 
-function addNumbersLeft(tempGrid)    //WORKS FOR LEFT AND UP
+function addNumbersLeft(tempGrid, isCheckLoose)    //WORKS FOR LEFT AND UP
 {
     var finalGrid = [];
     var empty = 0;
@@ -287,8 +290,11 @@ function addNumbersLeft(tempGrid)    //WORKS FOR LEFT AND UP
             {
                 finalGrid.push(String(tempGrid[i]*2));
                 tempGrid[i+1] = '';
-                score += tempGrid[i]*2;
-                displayScore();
+                if(!isCheckLoose)
+                {
+                    score += tempGrid[i]*2;
+                    displayScore();
+                }
             }
             else
             finalGrid.push(tempGrid[i]);
