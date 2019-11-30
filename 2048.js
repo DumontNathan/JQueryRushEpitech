@@ -15,27 +15,34 @@ refreshGrid();
 
 window.onkeydown = function (e) {
    
-    if (e.keyCode == '38') {
-        moveUp();
+    if(checkLoose() && countEmptyCells() == 0)
+    {
+        alert('eho');
     }
-    else if (e.keyCode == '40') {
-        moveDown();
-    }
-    else if (e.keyCode == '37') {
-        moveLeft();
-    }
-    else if (e.keyCode == '39') {
-        moveRight();
-    }
-        // if(checkLoose() && countEmptyCells() == 0)
-        // {
-        //     alert('eho');
-        // }
-        // else
-        // {
+    else
+    {
+        var tempGrid = duplicate(grid);
+        if (e.keyCode == '38') {
+            moveUp();
+        }
+        else if (e.keyCode == '40') {
+            moveDown();
+        }
+        else if (e.keyCode == '37') {
+            moveLeft();
+        }
+        else if (e.keyCode == '39') {
+            moveRight();
+        }
+    
+        if(!arrayIsEqual(tempGrid, grid))
+        {
             setNumber();
-            refreshGrid();
-        // }
+        }
+            
+        refreshGrid();
+    }
+
   }
   
 
