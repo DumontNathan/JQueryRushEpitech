@@ -13,6 +13,21 @@ function restartGame()
     refreshGrid();
 }
 
+// CHECK WIN
+
+function checkWin()
+{
+    for (var i = 0; i < 4; i++) {
+        for (var j = 0; j < 4; j++) {
+            if(grid[i][j] == '2048')
+            {
+                if($(".victory").is(":hidden"))
+                $(".victory").show("slow");
+            }
+        }  
+    }
+}
+
 // CHECK LOOSE
 
 function countEmptyCells()
@@ -35,7 +50,7 @@ function checkLoose()
 {
     var tempGrid = duplicate(grid);
 
-    moveDown(true);
+    moveDown(true);  // parameter true means that the score won't be applied during the move test.
     if(!arrayIsEqual(tempGrid, grid))
     {
         grid = duplicate(tempGrid);
@@ -135,6 +150,8 @@ function refreshGrid()
     $("#fourth-cell-4").html(grid[3][3]).css("background-color", setBgColor(grid[3][3]));  
 }
 
+// RANDOMISATION
+
 function getTwoOrFor()
 {
     var minNumber = 0; // MIN
@@ -159,7 +176,7 @@ function setNumber()
 
 // MOVES
 
-function moveRight(isCheckLoose)
+function moveRight(isCheckLoose)  //isCheckLoose parameter is true if the function is used in checkLoose()
 {
     for (var i = 0; i < 4; i++) 
     {
@@ -247,7 +264,7 @@ function moveDown(isCheckLoose)
     }   
 }
 
-// ADD NUMBERS
+// ADDING NUMBERS
 
 function addNumbersRight(tempGrid, isCheckLoose)       //WORKS FOR RIGHT AND DOWN
 {
@@ -261,7 +278,7 @@ function addNumbersRight(tempGrid, isCheckLoose)       //WORKS FOR RIGHT AND DOW
             {
                 finalGrid.unshift(String(tempGrid[i]*2));
                 tempGrid[i-1] = '';
-                if(!isCheckLoose)
+                if(!isCheckLoose)    //if the function is used in gaming conditions (not in checkLoose), the score is applied.
                 {
                     score += tempGrid[i]*2;
                     displayScore();

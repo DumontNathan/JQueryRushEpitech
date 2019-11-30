@@ -1,13 +1,18 @@
 //INIT
-
+$(".victory").hide();
 var score = 0;
 displayScore();
 gridInit();
+
+// WIN TEST
+// grid[0][0] = '1024';
+// grid[0][1] = '1024';
 
 // SETTING THE FIRST 2 NUMBERS
 
 setNumber();
 setNumber();
+
 refreshGrid();
 
 
@@ -17,7 +22,8 @@ window.onkeydown = function (e) {
    
     if(checkLoose() && countEmptyCells() == 0)
     {
-        alert('eho');
+        alert('No more move available... You lost.');
+        restartGame();
     }
     else
     {
@@ -41,6 +47,7 @@ window.onkeydown = function (e) {
         }
             
         refreshGrid();
+        checkWin();
     }
 
   }
@@ -51,6 +58,10 @@ window.onkeydown = function (e) {
 $(".restart").click(function()
 {
     restartGame();
+    if($(".victory").is(':visible'))
+    {
+        $(".victory").hide("slow");
+    }
 });
 
 $("h1").click(function()
@@ -58,13 +69,6 @@ $("h1").click(function()
     console.log(checkLoose());
     
 })
-
-  // LOST
-
-// $(window).on("error", function(){
-//     alert('Oooooh noooo... You lost.');
-//     restartGame();
-// })
 
 
 

@@ -41,7 +41,7 @@ h1
     display: flex;
     justify-content: center;
     align-items: center;
-    font-size: 50px;
+    font-size: 42px;
     font-weight: bold;
     height: 150px;
     width: 150px;
@@ -51,7 +51,7 @@ h1
     text-shadow: rgb(0, 0, 0) 1px 0px 0px, rgb(0, 0, 0) 0.540302px 0.841471px 0px, rgb(0, 0, 0) -0.416147px 0.909297px 0px, rgb(0, 0, 0) -0.989992px 0.14112px 0px, rgb(0, 0, 0) -0.653644px -0.756802px 0px, rgb(0, 0, 0) 0.283662px -0.958924px 0px, rgb(0, 0, 0) 0.96017px -0.279415px 0px;}
 
 .restart {
-    background-color: rgba(255, 102, 0, 0.75); /* Green */
+    background-color: rgba(255, 102, 0, 0.75);
     border: none;
     color: white;
     padding: 15px 32px;
@@ -72,3 +72,20 @@ h1
     box-shadow: 0 17px 50px 0 rgba(255, 102, 0, 0.75);
   }
 
+  .victory
+  {
+        background-color: #810DFF;
+        color: white;
+        padding: 15px 32px;
+        text-align: center;
+        font-size: 18px;
+        margin: 4px 2px;
+  }
+
+.container
+{
+    display: flex;
+    width: 600px;
+    justify-content: space-around;
+    margin-bottom: 1%;
+}
