@@ -4,15 +4,15 @@ var score = 0;
 displayScore();
 gridInit();
 
-// WIN TEST
-// grid[0][0] = '1024';
-// grid[0][1] = '1024';
+
 
 // SETTING THE FIRST 2 NUMBERS
 
 setNumber();
 setNumber();
-
+// WIN TEST
+grid[0][0] = '1024';
+grid[0][1] = '1024';
 refreshGrid();
 
 
@@ -38,6 +38,10 @@ window.onkeydown = function (e) {
         {
             alert('No more move available... You lost.');
             restartGame();
+            if($(".victory").is(':visible'))
+            {
+                $(".victory").hide("slow");
+            }
         }
         else
         {
