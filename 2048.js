@@ -36,7 +36,7 @@ window.onkeydown = function (e) {
     
         if(checkLoose() && countEmptyCells() == 0)
         {
-            alert('No more move available... You lost.');
+            alert(`No more move available... You lost. Your score : ${score}`);
             restartGame();
             if($(".victory").is(':visible'))
             {
